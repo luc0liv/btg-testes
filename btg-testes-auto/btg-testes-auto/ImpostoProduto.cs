@@ -12,28 +12,22 @@
         }
         public decimal PrecoFinalProduto()
         {
-            if (Estado == "RJ")
+            switch(Estado)
             {
-                return PrecoSemImpostos * (decimal)1.15;
+                case "RJ":
+                    return PrecoSemImpostos * (decimal)1.15;
+                case "MG":
+                    return PrecoSemImpostos * (decimal)1.07;
+                case "SP":
+                case "ES":
+                    return PrecoSemImpostos * (decimal)1.12;     
+                case "MS":
+                    return PrecoSemImpostos * (decimal)1.08;
+                case "SC":
+                    return PrecoSemImpostos * (decimal)1.18;
+                default:
+                    throw new Exception("Estado inválido!");
             }
-            if  (Estado == "MG")
-            {
-                return PrecoSemImpostos * (decimal)1.07;
-            }
-            if (Estado == "SP" || Estado == "ES")
-            {
-                return PrecoSemImpostos * (decimal)1.12;
-            }
-            if (Estado == "MS")
-            {
-                return PrecoSemImpostos * (decimal)1.08;
-            }
-            if (Estado == "SC")
-            {
-                return PrecoSemImpostos * (decimal)1.18;
-            } 
-
-         throw new Exception("Estado inválido!");
         }
     }
 }
