@@ -51,10 +51,11 @@ namespace btg_test
             pessoas.Add(pessoa4);
 
             Motorista motorista = new();
-            var retorno = motorista.EncontrarMotoristas(pessoas);
-            var exception = Assert.Throws<Exception>(() => retorno);
+            
+            Action act = () => motorista.EncontrarMotoristas(pessoas);
+            var exception = Assert.Throws<Exception>(act);
 
-            Assert.Equal("A viagem não será realizada devido à falta de motoristas!", exception.Message);
+            Assert.Equal("A viagem não será realizada devido falta de motoristas!", exception.Message);
         }
     }
 }
