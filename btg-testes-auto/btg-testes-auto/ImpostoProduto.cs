@@ -26,7 +26,7 @@
                 case "SC":
                     return PrecoSemImpostos * (decimal)1.18;
                 default:
-                    throw new Exception("Estado inválido!");
+                    throw new ArgumentException("Estado inválido!");
             }
         }
     }

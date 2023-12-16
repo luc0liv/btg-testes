@@ -21,12 +21,10 @@
 
         public void AddSongsToPlaylist(Playlist playlist, List<Song> songs)
         {
-            foreach(Song song in songs)
+            foreach(Song song in songs
+                .Where(song => _playlistValidationService.CanAddSongToPlaylist(playlist, song)))
             {
-                if (_playlistValidationService.CanAddSongToPlaylist(playlist, song))
-                {
-                    playlist.Songs.Add(song);
-                }
+                playlist.Songs.Add(song);
             }
         }
     }

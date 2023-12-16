@@ -1,8 +1,9 @@
-﻿using btg_testes_auto.PlaylistSongs;
+﻿using btg_testes_auto;
+using btg_testes_auto.PlaylistSongs;
 using FluentAssertions;
 using NSubstitute;
 
-namespace btg_test.PlaylistSongsTest
+namespace btg_test
 {
     public class PlaylistSongsServiceTest
     {
@@ -48,6 +49,8 @@ namespace btg_test.PlaylistSongsTest
 
             bool result = _sut.AddSongToPlaylist(playlist, song3);
             result.Should().BeTrue();
+            playlist.Songs.Should().NotBeEmpty();
+            playlist.Songs.Should().Contain(song3);
         }
 
         [Fact]
@@ -82,6 +85,7 @@ namespace btg_test.PlaylistSongsTest
                     .Returns(false);
             var result = _sut.AddSongToPlaylist(playlist, song3);
             result.Should().BeFalse();
+            playlist.Songs.Should().NotContain(song3);
         }
 
         [Fact]
@@ -108,6 +112,5 @@ namespace btg_test.PlaylistSongsTest
             _sut.AddSongsToPlaylist(playlist, songs);
             playlist.Songs.Should().Contain(song);
         }
-
     }
 }
