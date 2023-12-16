@@ -64,7 +64,7 @@ namespace btg_test
         {
             ImpostoProduto imposto = new(100, "XX");
             Action act = () => imposto.PrecoFinalProduto();
-            var exception = Assert.Throws<Exception>(act);
+            var exception = Assert.Throws<ArgumentException>(act);
             Assert.Equal("Estado inválido!", exception.Message);
         }
     }
